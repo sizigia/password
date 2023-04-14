@@ -1,3 +1,5 @@
+from helpers import generer_donnee, encoder_mdp
+
 def afficher_menu():
     """
     """
@@ -10,10 +12,11 @@ def afficher_menu():
     """)
 # end def
 
-def ajouter_mdp():
+def ajouter_mdp(utilisateur, mdp):
     """
     """
     print()
+    generer_donnee(utilisateur, mdp)
     return None
 # end def
 
