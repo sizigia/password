@@ -2,6 +2,12 @@ import os
 import json
 from helpers import generer_donnee, encoder_mdp
 
+OPTIONS = {
+    "1": ajouter_mdp,
+    "2": afficher_mdp,
+    "3": exit
+}
+
 def afficher_menu():
     """
     """
@@ -66,16 +72,11 @@ def afficher_mdp():
 afficher_menu()
 choix = input("Veuillez choisir une option : ")
 
-options = {
-    "1": ajouter_mdp,
-    "2": afficher_mdp,
-    "3": exit
-}
 
-if choix in options:
-    options[choix]()
+if choix in OPTIONS:
+    OPTIONS[choix]()
 else:
     print("Option invalide. Veuillez réessayer.")
-    while not choix in options:
+    while not choix in OPTIONS:
         afficher_menu()
         choix = input("Veuillez choisir une option : ")
