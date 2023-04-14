@@ -6,7 +6,7 @@ def afficher_menu():
     """
     """
 
-    print("""GESTION DES MOTS DE PASSE.
+    print(""":::GESTION DES MOTS DE PASSE:::
     Menu :
     1. Ajouter un nouveau mot de passe
     2. Afficher tous les mots de passe
