@@ -1,12 +1,6 @@
 import os
 import json
-from helpers import generer_donnee, encoder_mdp
-
-OPTIONS = {
-    "1": ajouter_mdp,
-    "2": afficher_mdp,
-    "3": exit
-}
+from helpers import generer_donnee, encoder_mdp, verifier_mdp
 
 def afficher_menu():
     """
@@ -27,9 +21,15 @@ def localiser_fichier():
     filepath = os.path.join(script_dir, filename)
     return filepath
 
-def ajouter_mdp(utilisateur, mdp):
+def ajouter_mdp():
     """
     """
+    utilisateur = input("Veuillez entrer votre nom d'utilisateur : ")
+    mdp = input("Veuillez entrer votre mot de passe : ")
+    
+    while not verifier_mdp(mdp):
+        print("Votre mot de passe n'est pas valide.")
+        mdp = input("Veuillez entrer votre mot de passe : ")
     
     filepath = localiser_fichier()
 
@@ -74,14 +74,28 @@ def afficher_mdp():
     return None
 # end def
 
-afficher_menu()
-choix = input("Veuillez choisir une option : ")
+def demarrage():
+    """
+    """
+    afficher_menu()
+    choix = input("Veuillez choisir une option : ")
+    
+    return choix
+# end def
 
+OPTIONS = {
+    "1": ajouter_mdp,
+    "2": afficher_mdp,
+    "3": exit
+}
 
-if choix in OPTIONS:
-    OPTIONS[choix]()
-else:
-    print("Option invalide. Veuillez réessayer.")
-    while not choix in OPTIONS:
-        afficher_menu()
-        choix = input("Veuillez choisir une option : ")
+choix = demarrage()
+
+while True:
+    if choix in OPTIONS:
+        OPTIONS[choix]()
+        choix = demarrage()
+    else:
+        print("Option invalide. Veuillez réessayer.")
+        while not choix in OPTIONS:
+            choix = demarrage()
