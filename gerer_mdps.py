@@ -65,7 +65,12 @@ def ajouter_mdp(utilisateur, mdp):
 def afficher_mdp():
     """
     """
-    print()
+    filepath = localiser_fichier()
+
+    with open(filepath, "r+") as file:
+        data = json.load(file)
+        mdp = (user["password_hash"] + '\n' for user in data["users"])
+        print(*mdp)
     return None
 # end def
 
