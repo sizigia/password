@@ -30,6 +30,7 @@ else:
         user = next((item for item in data['users'] if item.get('username') == utilisateur), None)
         if user is None:
             data["users"].append(generer_donnee(utilisateur, mdp))
+            file.seek(0)
             json.dump(data, file)
             print("Mot de passe ajouté.")
         else:
